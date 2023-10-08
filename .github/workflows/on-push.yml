@@ -1,0 +1,36 @@
+name: "Run lint + test + build on Push"
+on: [push, workflow_dispatch]
+job:
+    lint&test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Checkout Code"
+              uses: actions/checkout@v4
+
+            - name: "Set up Node"
+              uses: actions/setup-node@v3
+                with:
+                node-version: 18
+              run: npm install
+
+            - name: "Run linter"
+              run: vite lint
+
+            - name: "Run tests"
+              run: vite test
+
+    build:
+        needs: lint&test
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Checkout Code"
+              uses: actions/checkout@v4
+
+            - name: "Set up Node"
+              uses: actions/setup-node@v3
+                with:
+                node-version: 18
+              run: npm install
+
+            - name: "Build code"
+              run: vite build
