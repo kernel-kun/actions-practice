@@ -1,0 +1,10 @@
+name: "Print details when an issue is opened on Github"
+on:
+  issues:
+    types: opened
+jobs:
+  printIssueDetails:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Print all details"
+        run: echo ${{ toJSON(github) }}
