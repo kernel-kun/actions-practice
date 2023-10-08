@@ -16,10 +16,10 @@ jobs:
               run: npm install
 
             - name: "Run linter"
-              run: vite lint
+              run: npm run lint
 
             - name: "Run tests"
-              run: vite test
+              run: npm run test
 
     build:
         needs: lint_test
@@ -37,4 +37,4 @@ jobs:
               run: npm install
 
             - name: "Build code"
-              run: vite build
+              run: npm run build
